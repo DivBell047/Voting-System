@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.Instant;
 
@@ -17,10 +16,8 @@ import java.time.Instant;
 public class Candidate {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id", columnDefinition = "VARCHAR(36)")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotBlank(message = "Name is required")
     @Column(name = "name", length = 100, columnDefinition = "VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
@@ -43,6 +40,6 @@ public class Candidate {
 
     @PrePersist
     public void prePersist() {
-        createdAt = Instant.now(); // Set the creation timestamp before persisting
+        createdAt = Instant.now();
     }
 }

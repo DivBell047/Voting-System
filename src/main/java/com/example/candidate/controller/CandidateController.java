@@ -1,6 +1,8 @@
 package com.example.candidate.controller;
 
-import com.example.candidate.entity.Candidate;
+import com.example.candidate.dto.CandidateCreateDTO;
+import com.example.candidate.dto.CandidateDTO;
+import com.example.candidate.dto.CandidateUpdateDTO;
 import com.example.candidate.service.CandidateService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/candidates")
+@RequestMapping("/candidates") // This is now relative to /api/v1
 public class CandidateController {
 
     private final CandidateService candidateService;
@@ -22,15 +24,15 @@ public class CandidateController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Candidate>> getAllCandidates() {
-        List<Candidate> candidates = candidateService.getAllCandidates();
+    public ResponseEntity<List<CandidateDTO>> getAllCandidates() {
+        List<CandidateDTO> candidates = candidateService.getAllCandidates();
         return new ResponseEntity<>(candidates, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Candidate> getCandidateById(@PathVariable String id) {
+    public ResponseEntity<CandidateDTO> getCandidateById(@PathVariable Long id) {
         try {
-            Candidate candidate = candidateService.getCandidateById(id);
+            CandidateDTO candidate = candidateService.getCandidateById(id);
             return new ResponseEntity<>(candidate, HttpStatus.OK);
         } catch (jakarta.persistence.EntityNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -38,15 +40,15 @@ public class CandidateController {
     }
 
     @PostMapping
-    public ResponseEntity<Candidate> addCandidate(@Valid @RequestBody Candidate candidate) {
-        Candidate savedCandidate = candidateService.addCandidate(candidate);
+    public ResponseEntity<CandidateDTO> addCandidate(@Valid @RequestBody CandidateCreateDTO candidateCreateDTO) {
+        CandidateDTO savedCandidate = candidateService.addCandidate(candidateCreateDTO);
         return new ResponseEntity<>(savedCandidate, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Candidate> updateCandidate(@PathVariable String id, @Valid @RequestBody Candidate candidate) {
+    public ResponseEntity<CandidateDTO> updateCandidate(@PathVariable Long id, @Valid @RequestBody CandidateUpdateDTO candidateUpdateDTO) {
         try {
-            Candidate updatedCandidate = candidateService.updateCandidate(id, candidate);
+            CandidateDTO updatedCandidate = candidateService.updateCandidate(id, candidateUpdateDTO);
             return new ResponseEntity<>(updatedCandidate, HttpStatus.OK);
         } catch (jakarta.persistence.EntityNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -54,7 +56,7 @@ public class CandidateController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCandidate(@PathVariable String id) {
+    public ResponseEntity<Void> deleteCandidate(@PathVariable Long id) {
         try {
             candidateService.deleteCandidate(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
