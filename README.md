@@ -17,15 +17,21 @@ The system consists of the following microservices:
 
 ### 3. **Voting Service**
 - Handles secure and concurrent vote casting.
-- Implements distributed locking with Redis to prevent duplicate voting.
-- Uses Kafka for asynchronous vote processing to ensure eventual consistency.
-- Stores vote records in PostgreSQL.
+- Stores vote records in MySQL.
+- **Key Endpoints:**
+- `POST /api/votes/register`: Register a new vote
+  - Validates user and candidate information
+  - Ensures a user can vote only once
+- `GET /api/votes/check/{userId}`: Check voting status for a specific user
+  - Returns whether the user has voted
+  - Provides vote details if already voted
 
 ### 4. **Result Service**
 - Aggregates and computes voting results in real time.
-- Listens to Kafka topics for new votes and updates results accordingly.
-- Uses Redis caching for fast retrieval of election results.
 - Provides APIs for fetching real-time voting results.
+- **Key Endpoints:**
+- `POST /api/vote-results/update`: Manually trigger vote count update
+- `GET /api/vote-results/rankings`: Retrieve candidate rankings
 
 ### 5. **Notification Service**
 - Sends notifications to users upon successful vote casting.
