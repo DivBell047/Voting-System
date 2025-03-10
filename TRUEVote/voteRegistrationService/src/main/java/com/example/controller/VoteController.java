@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/votes")
+@RequestMapping("/registration")
 public class VoteController {
 
     @Autowired

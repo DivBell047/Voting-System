@@ -24,21 +24,26 @@ public class VoteResultServiceImpl implements VoteResultService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${vote-registration.service.url}")
-    private String voteRegistrationServiceUrl;
+    @Value("${api-gateway.url}")
+    private String apiGatewayUrl;
 
     @Override
     @Transactional
     public void updateAllVoteCounts() {
         // Fetch vote counts from vote registration service
         VoteCount[] voteCounts = restTemplate.getForObject(
-                voteRegistrationServiceUrl + "/api/votes/count",
+                apiGatewayUrl + "/registration/count",
                 VoteCount[].class
         );
 
+        // Check if response is null or empty
+        if (voteCounts == null || voteCounts.length == 0) {
+            System.out.println("No vote counts received from registration service");
+            return;
+        }
+
         // Update or create vote Result for each candidate
         LocalDateTime now = LocalDateTime.now();
-        assert voteCounts != null;
         for (VoteCount voteCount : voteCounts) {
             VoteResult voteResult = voteResultRepository.findByCandidateId(voteCount.getCandidateId());
 
