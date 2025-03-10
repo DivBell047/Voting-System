@@ -1,3 +1,4 @@
+// Candidate.java
 package com.example.candidate.entity;
 
 import jakarta.persistence.*;
