@@ -1,7 +1,7 @@
-package com.example.TRUEVote.consumer; // Changed package name
+package com.example.NotificationService.consumer;
 
-import com.example.TRUEVote.model.VoteEvent; // Changed package name
-import com.example.TRUEVote.service.NotificationService; // Changed package name
+import com.example.NotificationService.model.VoteEvent;
+import com.example.NotificationService.service.NotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;

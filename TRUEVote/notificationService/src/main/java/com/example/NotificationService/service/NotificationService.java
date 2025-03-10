@@ -1,9 +1,9 @@
-package com.example.TRUEVote.service; // Changed package name
+package com.example.NotificationService.service;
 
-import com.example.TRUEVote.model.VoteEvent; // Changed package name
-import com.example.TRUEVote.model.Notification; // Changed package name
-import com.example.TRUEVote.repository.NotificationRepository; // Changed package name
-import com.example.TRUEVote.util.NotificationUtil; // Changed package name
+import com.example.NotificationService.model.Notification;
+import com.example.NotificationService.model.VoteEvent;
+import com.example.NotificationService.repository.NotificationRepository;
+import com.example.NotificationService.util.NotificationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +52,10 @@ public class NotificationService {
             Notification notification = new Notification();
             notification.setUserId(voteEvent.getUserId());
             notification.setMessage(message);
+            notification.setTarget(userEmail); // example, store the email or phone number
+            notification.setNotificationType("Vote Confirmation");  //example
+            notification.setStatus("Sent");  //example
+
             notificationRepository.save(notification);
         }
     }

@@ -1,4 +1,4 @@
-package com.example.TRUEVote.model; // Changed package name
+package com.example.NotificationService.model;
 
 import lombok.Data;
 

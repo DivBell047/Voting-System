@@ -1,4 +1,4 @@
-package com.example.TRUEVote.util;
+package com.example.NotificationService.util;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
@@ -42,8 +42,8 @@ public class NotificationUtil {
 
     public void sendSMS(String to, String messageBody) {
         if (twilioAccountSid != null && !twilioAccountSid.isEmpty() && // Also verify it isn't an empty string
-            twilioAuthToken != null && !twilioAuthToken.isEmpty() &&
-            twilioPhoneNumber != null && !twilioPhoneNumber.isEmpty()) {
+                twilioAuthToken != null && !twilioAuthToken.isEmpty() &&
+                twilioPhoneNumber != null && !twilioPhoneNumber.isEmpty()) {
 
             try {
                 Twilio.init(twilioAccountSid, twilioAuthToken);
