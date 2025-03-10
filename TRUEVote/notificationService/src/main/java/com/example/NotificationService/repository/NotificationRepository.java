@@ -1,6 +1,6 @@
-package com.example.TRUEVote.repository;
+package com.example.NotificationService.repository;
 
-import com.example.TRUEVote.model.Notification; // Import the Notification model
+import com.example.NotificationService.model.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
