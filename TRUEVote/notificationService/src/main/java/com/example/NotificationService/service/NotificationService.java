@@ -26,7 +26,6 @@ public class NotificationService {
 
         //For simplicity, we will mock the user data
         String userEmail = "test@example.com";
-        String userPhoneNumber = "+1234567890";
 
         // 2. Construct the notification message.
         String message = "Thank you for voting!";
@@ -39,15 +38,7 @@ public class NotificationService {
             log.error("Error sending email: {}", e.getMessage());
         }
 
-        // 4. Send SMS notification.
-        try {
-            notificationUtil.sendSMS(userPhoneNumber, message);
-            log.info("SMS notification sent to {}", userPhoneNumber);
-        } catch (Exception e) {
-            log.error("Error sending SMS: {}", e.getMessage());
-        }
-
-        // 5. Save notification to database (optional).
+        // 4. Save notification to database (optional).
         if (notificationRepository != null) {
             Notification notification = new Notification();
             notification.setUserId(voteEvent.getUserId());
