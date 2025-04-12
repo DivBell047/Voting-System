@@ -4,6 +4,7 @@ import com.example.usermanagement.entity.User;
 import com.example.usermanagement.repo.userRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -24,7 +25,26 @@ public class userService {
         return userRepository.save(user);
     }
 
+    @Transactional(readOnly = true)
     public Optional<User> getUserByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<User> getUserById(Long id) {
+        if (id == null) {
+            return Optional.empty();
+        }
+        // findById is provided by JpaRepository
+        return userRepository.findById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public boolean userExistsById(Long id) {
+        if (id == null) {
+            return false;
+        }
+        // existsById is provided by JpaRepository
+        return userRepository.existsById(id);
     }
 }
