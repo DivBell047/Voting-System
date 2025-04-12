@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUEVote - Basic Voting UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>TRUEVote Voting System</h1>
+
+<!-- Section to Display Candidates -->
+<div class="container">
+    <h2>Candidates</h2>
+    <div id="candidates-list">
+        <p>Loading candidates...</p>
+        <!-- Candidates will be loaded here by JavaScript -->
+    </div>
+    <button id="refresh-candidates">Refresh Candidates</button>
+</div>
+
+<!-- Section to Cast Vote -->
+<div class="container">
+    <h2>Cast Your Vote</h2>
+    <div id="voting-form">
+        <label for="voter-id">Your Voter ID:</label>
+        <input type="text" id="voter-id" placeholder="Enter your unique numeric ID">
+        <br>
+        <label for="candidate-select">Select Candidate:</label>
+        <select id="candidate-select">
+            <option value="">--Select a Candidate--</option>
+            <!-- Options will be populated by JavaScript -->
+        </select>
+        <br>
+        <button id="cast-vote-button">Cast Vote</button>
+        <p id="vote-status" class="status-message"></p>
+    </div>
+</div>
+
+<!-- Section to Add New Candidate -->
+<div class="container">
+    <h2>Add New Candidate</h2>
+    <form id="add-candidate-form">
+        <div>
+            <label for="new-candidate-name">Name:</label>
+            <input type="text" id="new-candidate-name" required placeholder="Candidate's full name">
+            <span class="required-indicator">*</span>
+        </div>
+        <div>
+            <label for="new-candidate-party">Party:</label>
+            <input type="text" id="new-candidate-party" placeholder="Political party (optional)">
+        </div>
+        <div>
+            <label for="new-candidate-position">Position:</label>
+            <input type="text" id="new-candidate-position" placeholder="Position vying for (optional)">
+        </div>
+        <div>
+            <label for="new-candidate-description">Description:</label>
+            <textarea id="new-candidate-description" rows="3" placeholder="Short description (optional)"></textarea>
+        </div>
+        <div>
+            <label for="new-candidate-image-url">Image URL:</label>
+            <input type="url" id="new-candidate-image-url" placeholder="URL to candidate photo (optional)">
+        </div>
+        <button type="submit" id="add-candidate-button">Add Candidate</button>
+        <p id="add-candidate-status" class="status-message"></p>
+    </form>
+</div>
+
+<!-- Section to Display Results -->
+<div class="container">
+    <h2>Results (Rankings)</h2>
+    <div id="results-list">
+        <p>Loading results...</p>
+        <!-- Results will be loaded here by JavaScript -->
+    </div>
+    <button id="refresh-results">Refresh Results</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
