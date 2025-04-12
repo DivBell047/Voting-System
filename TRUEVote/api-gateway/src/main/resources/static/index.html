@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUEVote - Basic Voting UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>TRUEVote Voting System</h1>
+
+<div class="container">
+    <h2>Candidates</h2>
+    <div id="candidates-list">
+        <p>Loading candidates...</p>
+        <!-- Candidates will be loaded here by JavaScript -->
+    </div>
+    <button id="refresh-candidates">Refresh Candidates</button>
+</div>
+
+<div class="container">
+    <h2>Cast Your Vote</h2>
+    <div id="voting-form">
+        <label for="voter-id">Your Voter ID:</label>
+        <input type="text" id="voter-id" placeholder="Enter your unique ID">
+        <br>
+        <label for="candidate-select">Select Candidate:</label>
+        <select id="candidate-select">
+            <option value="">--Select a Candidate--</option>
+            <!-- Options will be populated by JavaScript -->
+        </select>
+        <br>
+        <button id="cast-vote-button">Cast Vote</button>
+        <!-- Add this button where appropriate in your HTML -->
+        <button id="update-votes-button">Update Votes</button>
+        <p id="vote-status"></p>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Results</h2>
+    <div id="results-list">
+        <p>Loading results...</p>
+        <!-- Results will be loaded here -->
+    </div>
+    <button id="refresh-results">Refresh Results</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -26,11 +26,8 @@ public class userController {
     @Operation(summary = "Register a new user", description = "Registers a new user with the provided details.")
     @ApiResponse(responseCode = "200", description = "User registered successfully", content = @Content(schema = @Schema(implementation = User.class)))
     public User registerUser(
-            @Parameter(description = "Username of the new user", required = true) @RequestParam String username,
-            @Parameter(description = "Email of the new user", required = true) @RequestParam String email,
-            @Parameter(description = "Password of the new user", required = true) @RequestParam String password,
-            @Parameter(description = "Role of the new user", required = true) @RequestParam String role) {
-        return userService.createUser(username, email, password, role);
+            @Parameter(description = "User details for registration", required = true) @RequestBody User user) {
+        return userService.createUser(user.getUsername(), user.getEmail(), user.getPasswordHash(), user.getRole());
     }
 
     @GetMapping("/username/{username}")
